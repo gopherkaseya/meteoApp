@@ -1,10 +1,10 @@
 <?php
     if(isset($_POST['nom_ville'])
     ){
-        $url = "https://api.openweathermap.org/data/2.5/weather?q=paris&appid=60ba69b1b1304b3143174510fd4797c5";
+        $url = "https://api.openweathermap.org/data/2.5/weather?q=".$_POST['nom_ville']."&appid=60ba69b1b1304b3143174510fd4797c5";
 
         $raw = file_get_contents($url);
-
+        var_dump($raw);
         $json = json_decode($raw);
         $nameTown = $json->name;
         $weather = $json->weather[0]->main;
@@ -12,8 +12,6 @@
         $temp = $json->main->temp;
         $feels_like = $json->main->feels_like;
     }
-    
-    
 ?>
 
 <!doctype html>
@@ -34,11 +32,11 @@
                 <button class="btn btn-primary">Valider</button>
             </div>
         </form>
-        
+
         <div>
             <?php
             if(isset($temp))
-                echo "la temperature est de ". $temp;cd
+                echo "la temperature est de ". $temp;
             ?>
         </div>
     </div>
